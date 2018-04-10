@@ -6,6 +6,7 @@ ENV OPENSHIFT_TAG "191fece"
 ARG RUNTIME_DEPS="git gettext"
 
 RUN yum -q -y update && \
+    rpm --quiet --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
     yum -q -y install ${RUNTIME_DEPS} && \
     curl -OLs https://github.com/openshift/origin/releases/download/${OPENSHIFT_VERSION}/openshift-origin-client-tools-${OPENSHIFT_VERSION}-${OPENSHIFT_TAG}-linux-64bit.tar.gz && \
     curl -OLs https://github.com/openshift/origin/releases/download/${OPENSHIFT_VERSION}/CHECKSUM && \
